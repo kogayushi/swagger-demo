@@ -29,3 +29,10 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+eclipse {
+    classpath {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
