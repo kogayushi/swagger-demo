@@ -1,0 +1,33 @@
+<configuration>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+
+    <withJansi>true</withJansi>
+    <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%highlight(%-5level)] [%cyan(%thread)] (%logger:%L\) %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>./logs/app.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/app.log.%d{yyyyMMdd}</fileNamePattern>
+      <maxHistory>14</maxHistory>
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] (%logger{0}:%L\) %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="false">
+    <appender-ref ref="CONSOLE" />
+  </logger>
+
+  <root level="info">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="FILE" />
+  </root>
+
+</configuration>

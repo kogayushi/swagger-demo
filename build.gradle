@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 version = '0.0.1-SNAPSHOT'
@@ -24,9 +25,13 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-jdbc') //@Transactionalアノテーション導入用のダミー
+	compile('com.h2database:h2')
+	
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 	compileOnly('org.projectlombok:lombok')
+	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
