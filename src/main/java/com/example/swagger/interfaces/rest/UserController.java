@@ -52,6 +52,7 @@ public class UserController {
     private final IdentityApplicationService identityApplicationService;
     private final AuthenticUserDtoAssembler authenticUserDtoAssembler;
 
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public AuthenticatedUserDto getAuthenticatedUser(@RequestParam String username, @RequestParam String password) {
@@ -61,6 +62,7 @@ public class UserController {
         return authenticUserDtoAssembler.toDto(userDescriptor);
     }
     
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @GetMapping(path = "/users/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public AuthenticatedUserDto getAuthenticatedUser(@PathVariable(value = "id") String id) {
@@ -68,6 +70,7 @@ public class UserController {
         return authenticUserDtoAssembler.toDto(userDescriptor);
     }
     
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/users", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<UserDescriptor> getUsers(
             @RequestParam(required = false, defaultValue = "0") final int offset,
@@ -75,6 +78,7 @@ public class UserController {
         return identityApplicationService.getUsers(offset, size);
     }
     
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/users", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public AuthenticatedUserDto register(@Validated @RequestBody UserDto user) {
         UserDescriptor userDescriptor = identityApplicationService.registerUser(
@@ -91,6 +95,7 @@ public class UserController {
         return authenticUserDtoAssembler.toDto(userDescriptor);
     }
     
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping(path = "/users/{id}/full-name", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void changeFullName(@PathVariable String id, @Validated @RequestBody ChangeFullNameDto fullName) {
         identityApplicationService.changeFullName(
@@ -102,6 +107,7 @@ public class UserController {
                 );
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping(path = "/users/{id}/sex", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void changeSex(@PathVariable String id, @Validated @RequestBody ChangeSexDto sex) {
         identityApplicationService.changeSex(
@@ -112,6 +118,7 @@ public class UserController {
                 );
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping(path = "/users/{id}/telephone-number", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void changeTelephoneNumber(@PathVariable String id, @Validated @RequestBody ChangeTelephoneNumberDto telephoneNumber) {
         identityApplicationService.changeTelephoneNumber(
@@ -122,6 +129,7 @@ public class UserController {
                 );
     }
     
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping(path = "/users/{id}/email-address", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void changeEmailAddress(@PathVariable String id, @Validated  @RequestBody ChangeEmailAddressDto emailAddress) {
         identityApplicationService.changeEmailAddress(
