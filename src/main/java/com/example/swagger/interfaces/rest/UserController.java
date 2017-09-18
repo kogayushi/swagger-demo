@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.util.MultiValueMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -55,10 +54,8 @@ public class UserController {
 
     @ResponseBody
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public AuthenticatedUserDto getAuthenticatedUser(@RequestBody MultiValueMap<String, String> request) {
+    public AuthenticatedUserDto getAuthenticatedUser(@RequestParam String username, @RequestParam String password) {
 
-        String username = request.getFirst("username");
-        String password = request.getFirst("password");
         UserDescriptor userDescriptor = identityApplicationService.authenticateUser(new AuthenticateUserCommand(username, password));
 
         return authenticUserDtoAssembler.toDto(userDescriptor);
