@@ -33,7 +33,7 @@
 #### The World's <font color="RED">most popular</font> Api tooling.
 > Swagger is the world’s largest framework of API developer tools for the OpenAPI Specification(OAS), enabling development across the entire API lifecycle, from design and documentation, to test and deployment.
 
-- 要約すると(Restful)APIの設計、文書化、テスト、開発を網羅した世界最大のフレームワークって書いてある
+- 要約すると(RESTful)APIの設計、文書化、テスト、開発を網羅した世界最大のフレームワークって書いてある
 
 ---
 ##### 構成要素
@@ -80,7 +80,7 @@ $ node .
 ## <font color="RED">なぜ</font>Swaggerを使うのか
 
 ---
-### その１：<<font color="RED">API仕様書を元にコード化</font>できるから
+### その１：<font color="RED">API仕様書を元にコード化</font>できるから
   - YAML/JSONで仕様書が書ける
     - Good by Excel !
   - API定義ファイルから
@@ -123,7 +123,7 @@ git clone https://github.com/kogayushi/swagger-demo.git
 - Spring Boot
   - Spring MVC
 #### Protocol
-- Restful API
+- RESTful API
 
 ---
 ### とりあえず、完成したSwagger-UIを見てください
